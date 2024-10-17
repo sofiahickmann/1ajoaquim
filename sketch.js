@@ -1,49 +1,61 @@
-// romance, animação, comédia, aventura
-
-// procurando nemo, LIVRE, animação, aventura, comédia
-// monstros S.A, LIVRE, animação, comédia, aventura
-// a bela e a fera, LIVRE, romance, comédia, aventura
-// sherek, LIVRE, comédia, animação, romance, aventura
-
-// o rei leão, 10, aventura, romance, animação 
-// titanic, 12, romance, aventura 
-
 let campoIdade;
+let campoComedia;
+let campoAventura;
+let campoAnimacao;
+let campoRomance;
 
 function setup() {
-  createCanvas(400, 400);
-  campoIdade = createInput("15");
+  createCanvas(800, 400);
+  createElement("h2", "Recomendador de filmes");
+  createSpan("Sua idade:");
+  campoIdade = createInput("5");
+  campoRomance = createCheckbox("Gosta de romance?");
+  campoAventura = createCheckbox("Gosta de aventura?");
+  campoComedia = createCheckbox ("Gosta de comedia?");
+  campoAnimacao = createCheckbox ("Gosta de animacao?");
 }
 
 function draw() {
-  background(220);
+  background("#A2C4F5");
   let idade = campoIdade.value();
-  let recomendacao = geraRecomendacao(idade);
+  let gostaDeAventura = campoAventura.checked();
+  let gostaDeComedia = campoComedia.checked();
+  let gostaDeAnimacao = campoAnimacao.checked();
+  let gostaDeRomance = campoRomance.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeAventura , gostaDeComedia , gostaDeRomance , gostaDeAnimacao);
+
+
+  fill(color(76, 0, 115));
+  textAlign(CENTER, CENTER);
+  textSize(38);
   text(recomendacao, width / 2, height / 2);
 }
-  
-function geraRecomendacao(idade) {
-   if(idade >= 10) {
-     if(idade >= 14) 
-   return "o rei leão"
-   } else {
-     
-    return "procurando nemo"; 
+
+function geraRecomendacao(idade, gostaDeComedia, gostaDeAnimacao, gostaDeRomance, gostaDeAventura) {
+  if (idade >= 10) {
+    if (idade >= 12) {
+      return "o rei leao";
+    } else {
+      if (idade >= 12) {
+        if(gostaDeRomance || gostaDeAventura || gostaDeAnimacao || gostaDeComedia) {
+          return "titanic";          
+        } else{
+         return "sherek";
+        }
+      } else {
+        if (gostaDeRomance || gostaDeAventura || gostaDeAnimacao || gostaDeComedia) {
+          return "a bela e a fera";
+        } else {
+          return "monstros S.A";
+        }
+      }
+    }
+  } else {
+    if (gostaDeRomance, gostaDeComedia || gostaDeAnimacao || gostaDeAventura) {
+      return "procurando nemo";
+    } else {
+      return "toy story";
+    }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
