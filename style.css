@@ -1,8 +1,9 @@
 html, body {
   margin: 30px;
   padding: 0;
-  background-color: rgb(21,56,109)
+  background-color: rgb(166,100,226)
 }
+
 canvas {
   display: block;
 }

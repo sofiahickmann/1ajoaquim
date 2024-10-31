@@ -1,29 +1,22 @@
-let campoIdade;
-let campoComedia;
-let campoAventura;
-let campoAnimacao;
-let campoRomance;
+let campoPreco;
+let campoCaro;
+let campoBarato;
 
 function setup() {
   createCanvas(800, 400);
-  createElement("h2", "Recomendador de filmes");
-  createSpan("Sua idade:");
-  campoIdade = createInput("5");
-  campoRomance = createCheckbox("Gosta de romance?");
-  campoAventura = createCheckbox("Gosta de aventura?");
-  campoComedia = createCheckbox ("Gosta de comedia?");
-  campoAnimacao = createCheckbox ("Gosta de animacao?");
+  createElement("h2", "Recomendador de maquiagem");
+  createSpan("Preco:");
+  campoPreco = createInput("5");
+  campoCaro = createCheckbox("Prefere Caro?");
+  campoBarato= createCheckbox("Prefere Barato?");
 }
 
 function draw() {
-  background("#A2C4F5");
-  let idade = campoIdade.value();
-  let gostaDeAventura = campoAventura.checked();
-  let gostaDeComedia = campoComedia.checked();
-  let gostaDeAnimacao = campoAnimacao.checked();
-  let gostaDeRomance = campoRomance.checked();
-  let recomendacao = geraRecomendacao(idade, gostaDeAventura , gostaDeComedia , gostaDeRomance , gostaDeAnimacao);
-
+  background("rgb(174,140,204)");
+  let preco = campoPreco.value();
+  let prefereCaro = campoCaro.checked();
+  let prefereBarato = campoBarato.checked();
+  let recomendacao = geraRecomendacao(preco, prefereCaro, prefereBarato);
 
   fill(color(76, 0, 115));
   textAlign(CENTER, CENTER);
@@ -31,30 +24,30 @@ function draw() {
   text(recomendacao, width / 2, height / 2);
 }
 
-function geraRecomendacao(idade, gostaDeComedia, gostaDeAnimacao, gostaDeRomance, gostaDeAventura) {
-  if (idade >= 10) {
-    if (idade >= 12) {
-      return "o rei leao";
+function geraRecomendacao(preco, prefereCaro, prefereBarato) {
+  if (preco >= 200) {
+    if (preco >= 400) {
+      return "Dior";
     } else {
-      if (idade >= 12) {
-        if(gostaDeRomance || gostaDeAventura || gostaDeAnimacao || gostaDeComedia) {
-          return "titanic";          
+      if (preco>= 300) {
+        if(prefereCaro || prefereBarato) {
+          return "Nars";          
         } else{
-         return "sherek";
+         return "Franciny Ehlke";
         }
       } else {
-        if (gostaDeRomance || gostaDeAventura || gostaDeAnimacao || gostaDeComedia) {
-          return "a bela e a fera";
+        if (prefereCaro) {
+          return "Rare Beauty";
         } else {
-          return "monstros S.A";
+          return "Mac";
         }
       }
     }
-  } else {
-    if (gostaDeRomance, gostaDeComedia || gostaDeAnimacao || gostaDeAventura) {
-      return "procurando nemo";
+ } else {
+    if (prefereBarato) {
+      return "Nina Secrets";
     } else {
-      return "toy story";
+      return "Mari Maria Makeup";
     }
   }
 }
